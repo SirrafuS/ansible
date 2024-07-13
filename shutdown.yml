@@ -2,5 +2,5 @@
 - hosts: all
   become: true
   tasks:
-    - name: Shutdown Debian System
+    - name: Shutdown all System
       ansible.builtin.command: /sbin/shutdown now
