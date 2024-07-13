@@ -1,6 +1,7 @@
 # group name
 [ubuntu_hosts]
-192.168.2.101 ansible_ssh_private_key_file=/home/sirrafus/.ssh/id_rsa_ansible.pem
-192.168.2.102 ansible_ssh_private_key_file=/home/sirrafus/.ssh/id_rsa_ansible.pem
-192.168.2.103 ansible_ssh_private_key_file=/home/sirrafus/.ssh/id_rsa_ansible.pem
-
+192.168.2.101 apache_package=apache2 php_package=libapache2-mod-php
+192.168.2.102 apache_package=apache2 php_package=libapache2-mod-php
+192.168.2.103 apache_package=apache2 php_package=libapache2-mod-php
+[fedora_hosts]
+192.168.2.104 apache_package=httpd php_package=php

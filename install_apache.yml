@@ -1,18 +1,32 @@
 ---
+
 - hosts: all
   become: true
   tasks:
-  - name: update repo index
-    apt:
+  
+  - name: Update repo & Install apache and php
+    package:
+	# generic package manager picks the one that needs to be run on os
+      name: 
+        # Ansible variables are in {{  }}
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
       update_cache: yes
 
-  - name: Install package apache2
-    apt:
-      name: apache2
-      state: latest
       
-  - name: add php for apache
-    apt:
-      name: libapache2-mod-php
-      state: latest
+  - name: Enable and start httpd service
+    ansible.builtin.service:
+      name: httpd
+      state: started
+      enabled: yes
+    when: ansible_distribution == "Fedora"
+
+  - name: Allow HTTP service through the firewall
+    ansible.builtin.firewalld:
+      service: http
+      permanent: yes
+      immediate: yes
+      state: enabled
+    when: ansible_distribution == "Fedora"
   
