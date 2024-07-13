@@ -1,0 +1,6 @@
+# group name
+[ubuntu_hosts]
+192.168.2.101 ansible_ssh_private_key_file=/home/sirrafus/.ssh/id_rsa_ansible.pem
+192.168.2.102 ansible_ssh_private_key_file=/home/sirrafus/.ssh/id_rsa_ansible.pem
+192.168.2.103 ansible_ssh_private_key_file=/home/sirrafus/.ssh/id_rsa_ansible.pem
+

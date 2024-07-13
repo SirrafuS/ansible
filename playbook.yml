@@ -1,0 +1,8 @@
+---
+- name: Create directory
+  hosts: all
+  tasks:
+    - name: Create directory
+      file:
+        path: /home/sirrafus/test
+        state: directory
