@@ -25,7 +25,6 @@
     
  - hosts: workstations
    become: true
-   # name is dir name
    roles:
      - workstations
  

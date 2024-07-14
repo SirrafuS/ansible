@@ -1,0 +1,33 @@
+- name: install httpd package
+  tags: apache,fedora,httpd,ubuntu,php
+  package:
+    name:
+      - "{{ apache_package }}"
+      - "{{ php_package }}"
+    state: latest
+
+- name: start and enable httpd/apache
+  tags: apache,fedora,httpd,ubuntu
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes
+
+- name: change e-mail address for admin
+  tags: fedora,httpd
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^ServerAdmin'
+    line: ServerAdmin tigranmelikyan@gmail.com
+  when: ansible_distribution == "Fedora"
+  notify: restart_apache
+
+- name: copy html file for site
+  tags: apache,apache,apache2,httpd
+  copy:
+    # when this is called inside of a role it expects to be in files dir of same dir when tasks dir is located
+    src: default_site.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644

@@ -1,0 +1,7 @@
+---
+# handlers are a special type of task in Ansible that run only when notified by another task using it's name. 
+- name: restart_apache
+  tags: apache,fedora,httpd,ubuntu
+  service:
+    name: "{{ apache_service }}"
+    state: restarted 
