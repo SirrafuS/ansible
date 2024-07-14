@@ -3,7 +3,7 @@
   become: true
   pre_tasks:
 
-  - name: Update repo & Install apache and php for Fedora
+  - name: Update repo for Fedora
     tags: always
     dnf:
       state: latest
@@ -11,13 +11,21 @@
       update_cache: yes
     when: ansible_distribution == "Fedora"
 
-  - name: Update repo & Install apache and php for Ubuntu
+  - name: Update repo for Ubuntu
     tags: always
     apt:
       upgrade: yes
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
+  - name: Copy website html
+    tags: apache,apache2,httpd
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
 
 - hosts: web_servers
   become: true
@@ -82,3 +90,4 @@
       name: 
         - nmap
       state: latest
+
