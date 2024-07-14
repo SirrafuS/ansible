@@ -6,7 +6,7 @@
   
   - name: Update repo & Install apache and php
     package:
-	# generic package manager picks the one that needs to be run on os
+# generic package manager picks the one that needs to be run on os
       name: 
         # Ansible variables are in {{  }}
         - "{{ apache_package }}"
